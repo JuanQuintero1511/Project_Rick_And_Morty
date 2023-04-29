@@ -1,20 +1,28 @@
-const http = require ('http');
-const data = require ('./utils/data');
-const { default: characters } = require('./utils/data');
+const express = require('express');
+const server = express();
+const router = require('./routes/index');
+const morgan = require('morgan');
+const PORT = 3001;
 
+server.use(express.json());
+server.use(morgan('dev'));
 
-http
-.createServer ((req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header(
+       'Access-Control-Allow-Headers',
+       'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    res.header(
+       'Access-Control-Allow-Methods',
+       'GET, POST, OPTIONS, PUT, DELETE'
+    );
+    next();
+});
+    
+server.use('/rickandmorty', router);
 
-    if (req.url.includes('/rickandmorty/character')) {
-        console.log(req.url);
-        const id = req.url.split('/').at(-1)
-        const characterFinded = data.find((character) => {
-            return character.id === +id
-        })
-
-
-   }
-})
-.listen(3001) 
+server.listen(PORT, () => {
+    console.log(`Server raised in port: ${PORT}`);
+});
