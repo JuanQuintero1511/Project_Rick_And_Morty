@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { addFav, removeFav } from '../components/redux/actions'
-import { connect } from 'react-redux'
-import { useState, useEffect } from "react";
+import { Link }                  from  "react-router-dom";
+import { addFav, removeFav }     from  '../components/redux/actions'
+import { connect }               from  'react-redux'
+import { useState, useEffect }   from  "react";
 
 function Card ({id, name, status, species, gender, origin, image, onClose, addFav, removeFav, myFavorites, }) {
 
@@ -29,6 +29,7 @@ function Card ({id, name, status, species, gender, origin, image, onClose, addFa
 
    return (
       <div>
+
          <Link to={`/detail/${id}`} >
             <h3 className="card-name">{name}</h3>
          </Link>
@@ -38,12 +39,13 @@ function Card ({id, name, status, species, gender, origin, image, onClose, addFa
          }
 
          <button onClick={() => onClose (id)}>X</button>
-         <h2>{name}</h2>
-         <h2>{status}</h2>
-         <h2>{species}</h2>
-         <h2>{gender}</h2>
-         <h2>{origin}</h2>
+         <h2>     {name}      </h2>
+         <h2>     {status}    </h2>
+         <h2>     {species}   </h2>
+         <h2>     {gender}    </h2>
+         <h2>     {origin}    </h2>
          <img src={image} alt='' /> 
+
       </div>
    );
 }
@@ -56,8 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      addFav: (character) => {dispatch(addFav(character))},
-      removeFav: (id) => {dispatch(removeFav(id))}
+      addFav: (character)  => {dispatch(addFav(character))},
+      removeFav: (id)      => {dispatch(removeFav(id))}
    }
 }
 

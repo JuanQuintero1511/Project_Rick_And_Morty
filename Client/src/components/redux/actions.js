@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from './actions-types';
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from '../redux/actions-types';
 import axios from 'axios';
 
 export const addFav = (character) => {

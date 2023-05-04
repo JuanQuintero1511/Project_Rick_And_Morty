@@ -1,5 +1,7 @@
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
+import styled from './Nav.module.scss'
+
 
 const Nav = ({ onSearch, setAccess }) => {
   const handleLogOut = () => {
@@ -9,13 +11,13 @@ const Nav = ({ onSearch, setAccess }) => {
   return (
     <nav>
 
-        <div>
+        <div className={styled.nav}>
             <Link to='/about'> ABOUT </Link>
             <Link to='/home'> HOME </Link>
-            <Link to='/favorites'> Favorites </Link>
+            <Link to='/favorites'> FAVORITES </Link>
         </div>
 
-        <button onClick={handleLogOut}>LOG OUT</button>
+        <button className={styled.button} onClick={handleLogOut}>LOG OUT</button>
         <SearchBar onSearch={onSearch}/>
     </nav>
   )
